@@ -1,34 +1,83 @@
-import React, { useState } from 'react'
+import React, {useRef, useState, useEffect } from 'react';
 import AuthUser from './AuthUser';
 
-function Login() {
-  const {http} = AuthUser();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
- 
-  const  submitForm = () => {
-    console.log(email +' '+ password);
-    http.post('/login',{email:email,password:password}).then((res) => {
-     console.log(res.data);
-    });
-  }
+const Login = () => {
+   const userRef = useRef();
+   const errRef = useRef();
+
+   const [user, setUser] = useState('');
+   const [pwd, setPwd] = useState('');
+   const [errMsg, setErrMsg] = useState('');
+   const [success, setSuccess] = useState(false);
+   
+   useEffect(() =>{
+      userRef.current.focus();
+   }, [])
+   useEffect(() => {
+      setErrMsg('');
+   }, [user, pwd])
+
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+      console.log(user, pwd);
+      setUser('');
+      setPwd('');
+      setSuccess(true);
+   }
 
   return (
-    <div className="row justify-content-center pt-5">
-        <div className="col-sm-6">
-          <div className="card p-4">
-            <div className="from-group">
-              <label>Email address: </label>
-              <input type="email" className="form-control" placeholder="Enter email" onChange={e=>setEmail(e.target.value)} id="email"/>
-            </div>
-            <div className="from-group mt-3">
-              <label>Password: </label>
-              <input type="password" className="form-control" placeholder="Enter password" onChange={e=>setPassword(e.target.value)} id="pwd"/>
-            </div>
-            <button type="button" onClick={submitForm} className="btn btn-primary mt-4">Login</button>
+    <>
+    {success ?(
+      <section>
+        <h1>You are logged in!</h1>
+        <br/>
+        <p>
+          <a href="#">Go to Home</a>
+        </p>
+      </section>
+    ) : (
+    <section>
+      <div className='row justify-content-center mt-5'>
+        <div class="col-sm-6">
+        <div className='card p-4'>
+        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+        <h3>Sign In</h3>
+        <form onSubmit={handleSubmit}>
+          <div className='form-group'>
+          <label htmlFor="username">Username:</label>
+          <input 
+            type="text"
+            id="username"
+            ref={userRef}
+            autoComplete="off"
+            onChange={(e) => setUser(e.target.value)}
+            value={user}
+            required
+            className='form-control'
+          />
           </div>
+
+          <div className='form-group mt-3'>
+          <label htmlFor="password">Password:</label>
+          <input 
+            type="password"
+            id="password"
+            onChange={(e) => setPwd(e.target.value)}
+            value={pwd}
+            required
+            className='form-control'
+          />
+          </div>
+          <div className='form-group'>
+            <button type="button" className='btn btn-primary btn-block mt-4'>Sign In</button>
+          </div>
+        </form>
         </div>
-    </div>
+        </div>
+      </div>
+    </section>
+    )}
+    </>
   )
 }
 
