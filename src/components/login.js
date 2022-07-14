@@ -8,6 +8,7 @@ function Login() {
  
   const  submitForm = () => {
     // console.log(email +' '+ password);
+    // api call
     http.post('/login',{email:email,password:password}).then((res) => {
      console.log(res.data);
     });

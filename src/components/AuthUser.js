@@ -1,4 +1,3 @@
-import React from 'react';
 import axois from 'axios';
 
 function AuthUser() {
@@ -9,7 +8,7 @@ function AuthUser() {
         }
 
     });
-  return {
+  return { 
     http
 }
 }
