@@ -38,7 +38,7 @@ const Login = () => {
     ) : (
     <section>
       <div className='row justify-content-center mt-5'>
-        <div class="col-sm-6">
+        <div className="col-sm-6">
         <div className='card p-4'>
         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
         <h3>Sign In</h3>
@@ -69,7 +69,7 @@ const Login = () => {
           />
           </div>
           <div className='form-group'>
-            <button type="button" className='btn btn-primary btn-block mt-4'>Sign In</button>
+            <button type="button" className='btn btn-primary mt-4'>Sign In</button>
           </div>
         </form>
         </div>
