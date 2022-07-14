@@ -7,7 +7,7 @@ function Login() {
   const [password, setPassword] = useState();
  
   const  submitForm = () => {
-    // console.log(email +' '+ password);
+    console.log(email +' '+ password);
     http.post('/login',{email:email,password:password}).then((res) => {
      console.log(res.data);
     });
