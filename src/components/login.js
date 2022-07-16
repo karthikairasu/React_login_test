@@ -1,5 +1,4 @@
 import React, {useRef, useState, useEffect } from 'react';
-import AuthUser from './AuthUser';
 
 const Login = () => {
    const userRef = useRef();
@@ -13,6 +12,7 @@ const Login = () => {
    useEffect(() =>{
       userRef.current.focus();
    }, [])
+   
    useEffect(() => {
       setErrMsg('');
    }, [user, pwd])
@@ -69,7 +69,7 @@ const Login = () => {
           />
           </div>
           <div className='form-group text-center'>
-            <button type="button" className='btn btn-primary mt-4'>Sign In</button>
+            <button className='btn btn-primary mt-4'>Sign In</button>
           </div>
         </form>
         </div>
