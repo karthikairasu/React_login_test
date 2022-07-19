@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom"
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -8,7 +8,7 @@ function Login() {
   const history = useHistory();
   useEffect(() => {
     if (localStorage.getItem('user-info')){
-        history.push("/add ")
+        history.push("/dashboard");
     }
   }, [])
   function login(){
@@ -20,13 +20,13 @@ function Login() {
           <div className="card p-4">
             <div className="from-group">
               <label>Email address: </label>
-              <input type="email" className="form-control" placeholder="Enter email" onChange={(e) =>setEmail(e.target.value)} id="email"/>
+              <input type="email" className="form-control" placeholder="Enter email" onChange={(e)=>setEmail(e.target.value)} id="email"/>
             </div>
             <div className="from-group mt-3">
               <label>Password: </label>
-              <input type="password" className="form-control" placeholder="Enter password" onChange={(e) =>setPassword(e.target.value)} id="pwd"/>
+              <input type="password" className="form-control" placeholder="Enter password" onChange={(e)=>setPassword(e.target.value)} id="pwd"/>
             </div>
-            <button type="button" onClick={login} className="btn btn-primary mt-4">Login</button>
+            <button onClick={login} className="btn btn-primary mt-4">Login</button>
           </div>
         </div>
     </div>
