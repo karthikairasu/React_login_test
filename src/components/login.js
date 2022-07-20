@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const history = useHistory();
+  const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem('user-info')){
-        history.push("/dashboard");
+      //navigate("/dashboard");
     }
   }, [])
-  function login(){
+  async function login(){
     console.warn(email, password);
+    let item={email,password};
+    let result= await fetch("http://api.ansara.in/api/login",{
+      method: 'POST',
+      headers:{
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+      },
+      body:JSON.stringify(item)
+    }); 
+    result = await result.json();
+    localStorage.setItem("user-info",JSON.stringify(result))
+    navigate("/dashboard")
+
   }
   return (
     <div className="row justify-content-center pt-5">
