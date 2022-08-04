@@ -8,7 +8,7 @@ function Login() {
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("user-info")) {
-      //navigate("/dashboard");
+      navigate("/dashboard");
     }
   }, []);
   async function login() {

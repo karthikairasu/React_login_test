@@ -9,7 +9,7 @@ import React, { Component } from "react";
 function App() {
   let user = JSON.parse(localStorage.getItem("user-info"));
   const navigate = useNavigate();
-  //console.warn(user)
+  console.warn(user);
   function logOut() {
     localStorage.clear();
     navigate("/login");
